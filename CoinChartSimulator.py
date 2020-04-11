@@ -78,4 +78,4 @@ class CoinChartSimulator():
         return chart
 
 btc = CoinChartSimulator('bitcoin')
-print(btc.simulate_z())
+print(btc.simulate_z(start_price=btc.prices[-1], days=365))
