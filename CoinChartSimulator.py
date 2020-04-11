@@ -18,6 +18,7 @@ def choose_coin():
 
 class CoinChartSimulator():
     """Generate random price changes for simulations."""
+    
     def __init__(self, coin_name):
         url = 'https://coinmarketcap.com/currencies/' + \
               re.sub(r'[\W]', '-', coin_name) + \
