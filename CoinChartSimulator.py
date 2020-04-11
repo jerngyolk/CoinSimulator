@@ -23,10 +23,10 @@ class CoinChartSimulator():
             self.changes.append(change)
 
         #A price change list based on historical price, but made zero-sum.
-        self.zero_sum_list = []
+        self.changes_z = []
         for i in self.changes:
-            self.zero_sum_list.append(abs(i))
-            self.zero_sum_list.append(1 / (1 + abs(i)) - 1)
+            self.changes_z.append(i)
+            self.changes_z.append(1 / (1 + i) - 1)
 
     def generate(self):
         """Generate a random price change (a double) from historical data."""
@@ -49,11 +49,11 @@ class CoinChartSimulator():
     #Below are the zero-sum versions of the methods above.
     def generate_z(self):
         """Generate a random (zero-sum) price change."""
-        return random.choice(self.zero_sum_list)
+        return random.choice(self.changes_z)
 
     def generate_list_z(self, days=365):
         """Generate a list of random (zero-sum) price changes."""
-        return random.choices(self.zero_sum_list, k=days)
+        return random.choices(self.changes_z, k=days)
 
     def simulate_z(self, start_price=0, days=365):
         """Generate a list of random (zero-sum) price."""
