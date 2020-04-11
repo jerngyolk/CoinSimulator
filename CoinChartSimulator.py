@@ -60,7 +60,7 @@ class CoinChartSimulator():
             chart.append(chart[i] * (1 + changes[i]))
         return chart
 
-    #Below are the zero-sum versions of the methods.
+    #Below are the zero-sum versions of the methods above.
     def generate_z(self):
         """Generate a random (zero-sum) price change."""
         return random.choice(self.zero_sum_list)
