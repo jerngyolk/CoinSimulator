@@ -78,5 +78,9 @@ class CoinChartSimulator():
         return chart
 
 btc = CoinChartSimulator('bitcoin')
-print('Bitcoin prediction for the next year...')
-print(btc.simulate_z(start_price=btc.prices[-1], days=365))
+print('Bitcoin prediction for the next 10 days...')
+print(btc.simulate(start_price=btc.prices[-1], days=10))
+
+doge = CoinChartSimulator('dogecoin')
+print('Dogecoin prediction (zero-sum) for the next year...')
+print(doge.simulate_z(start_price=doge.prices[-1], days=365))
