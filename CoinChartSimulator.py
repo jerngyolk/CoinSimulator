@@ -1,6 +1,6 @@
 import re
-import datetime
 import random
+import datetime
 import pandas as pd
 
 def choose_coin():
