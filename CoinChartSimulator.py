@@ -3,22 +3,8 @@ import random
 import datetime
 import pandas as pd
 
-def choose_coin():
-    """Let user choose a coin, return coin name."""
-    print('Top 20 cryptocurrencies:\n')
-    url = 'https://coinmarketcap.com/'
-    df = pd.read_html(url)[2]
-    df.style.hide_index()
-    print(df.loc[0:19, ['#', 'Name', 'Market Cap', 'Price', 'Change (24h)']]
-          .to_string(index = False))
-    num = int(input('\nType the # you want: ')) - 1
-    coin_name = df['Name'][num]
-    print(f'\nYou chose {coin_name}.')
-    return coin_name
-
 class CoinChartSimulator():
     """Generate random price changes for simulations."""
-    
     def __init__(self, coin_name):
         url = 'https://coinmarketcap.com/currencies/' + \
               re.sub(r'[\W]', '-', coin_name) + \
@@ -41,8 +27,6 @@ class CoinChartSimulator():
         for i in self.changes:
             self.zero_sum_list.append(abs(i))
             self.zero_sum_list.append(1 / (1 + abs(i)) - 1)
-            self.zero_sum_list.append(-abs(i))
-            self.zero_sum_list.append(1 / (1 - abs(i)) - 1)
 
     def generate(self):
         """Generate a random price change (a double) from historical data."""
