@@ -78,4 +78,5 @@ class CoinChartSimulator():
         return chart
 
 btc = CoinChartSimulator('bitcoin')
+print('Bitcoin prediction for the next year...')
 print(btc.simulate_z(start_price=btc.prices[-1], days=365))
