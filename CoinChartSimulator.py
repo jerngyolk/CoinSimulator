@@ -48,11 +48,11 @@ class CoinChartSimulator():
         """Generate a random price change (a double) from historical data."""
         return random.choice(self.changes)
 
-    def generate_list(self, days=1):
+    def generate_list(self, days=365):
         """Generate a list of random price changes (a list of doubles)."""
         return random.choices(self.changes, k=days)
     
-    def simulate(self, start_price=100, days=1):
+    def simulate(self, start_price=100, days=365):
         """Generate a list of random price (a list of doubles)."""
         changes = self.generate_list(days=days)
         chart = [start_price]
@@ -65,11 +65,11 @@ class CoinChartSimulator():
         """Generate a random (zero-sum) price change."""
         return random.choice(self.zero_sum_list)
 
-    def generate_list_z(self, days=1):
+    def generate_list_z(self, days=365):
         """Generate a list of random (zero-sum) price changes."""
         return random.choices(self.zero_sum_list, k=days)
 
-    def simulate_z(self, start_price=100, days=1):
+    def simulate_z(self, start_price=100, days==365):
         """Generate a list of random (zero-sum) price."""
         changes = self.generate_list_z(days=days)
         chart = [start_price]
@@ -78,4 +78,4 @@ class CoinChartSimulator():
         return chart
 
 btc = CoinChartSimulator('bitcoin')
-print(btc.simulate_z(100, 100))
+print(btc.simulate_z())
