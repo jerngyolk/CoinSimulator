@@ -115,12 +115,14 @@ class CoinTester():
         return performance
 
 
+#DEMO:
+
 btc = CoinSimulator('bitcoin')
 btc_list = btc.simulate(start_price=btc.prices[-1], days=1000)
 #btc_list = btc.prices
 
-print('Simulated btc periodic investment:')
-print('Generated btc price list (1000 days):')
+print('BTC periodic investment simulation:')
+print('Generated BTC price list (1000 days):')
 print(btc_list)
 
 print('Investment simulation:')
