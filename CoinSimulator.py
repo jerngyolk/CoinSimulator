@@ -66,7 +66,7 @@ class CoinSimulator():
         return chart
 
 
-class Tester():
+class CoinTester():
     """Take in a list of coin price to test investment performance."""
     def __init__(self, price_list):
         self.price_list = price_list
@@ -126,27 +126,27 @@ print(btc_list)
 print('Investment simulation:')
 
 print('\nBuy USD 100 every day:')
-every_day = Tester(btc_list)
+every_day = CoinTester(btc_list)
 for i in range(len(btc_list)):
     every_day.buy(price=btc_list[i], usd=100)
 every_day.performance(imprint=True)
 
 print('\nBuy USD 700 every week:')
-every_week = Tester(btc_list)
+every_week = CoinTester(btc_list)
 for i in range(len(btc_list)):
     if i % 7 == 0:
         every_week.buy(price=btc_list[i], usd=700)
 every_week.performance(imprint=True)
 
 print('\nBuy USD 3000 every month:')
-every_month = Tester(btc_list)
+every_month = CoinTester(btc_list)
 for i in range(len(btc_list)):
     if i % 30 == 0:
         every_month.buy(price=btc_list[i], usd=3000)
 every_month.performance(imprint=True)
 
 print('\nBuy USD 18300 every 6 months:')
-every_six_months = Tester(btc_list)
+every_six_months = CoinTester(btc_list)
 for i in range(len(btc_list)):
     if i % 183 == 0:
         every_six_months.buy(price=btc_list[i], usd=18300)
