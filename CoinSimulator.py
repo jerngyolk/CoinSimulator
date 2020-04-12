@@ -105,7 +105,8 @@ class Tester():
         self.coins_value = round(self.coins_owned * self.price_list[-1], 2)
         solled = round(self.money_spent - self.money_in, 2)
         total_value = round(self.coins_value + solled, 2)
-        performance = (total_value - self.money_spent) / self.money_spent
+        performance = round(
+            (total_value - self.money_spent) / self.money_spent, 2)
         if imprint:
             print('\nPerformance:')
             print(f'Coin value: ${self.coins_value}')
