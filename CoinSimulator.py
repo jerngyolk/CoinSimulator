@@ -76,7 +76,7 @@ class Tester():
         self.coins_value = 0
 
     def buy(self, price, usd=0, coins=0, imprint=False):
-        """Buy coins, need prince and amount (usd or coin)."""
+        """Buy coins, need price and amount (usd or coin)."""
         spent = usd + coins * price
         self.money_spent += spent
         self.money_in += spent
@@ -89,7 +89,7 @@ class Tester():
             
 
     def sell(self, price, usd=0, coins=0, imprint=False):
-        """Sell coins, need prince and amount (usd or coin)."""
+        """Sell coins, need price and amount (usd or coin)."""
         received = usd + coins * price
         self.money_in -= received
         self.coins_owned -= received / price
