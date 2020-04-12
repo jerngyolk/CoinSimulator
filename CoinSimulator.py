@@ -122,30 +122,34 @@ btc_list = btc.simulate(start_price=btc.prices[-1], days=1000)
 #btc_list = btc.prices
 
 print('Simulated btc periodic investment:')
+print('Generated btc price list (1000 days):')
+print(btc_list)
 
-print('\nEvery day:')
+print('Investment simulation:')
+
+print('\nBuy USD 100 every day:')
 every_day = Tester(btc_list)
 for i in range(len(btc_list)):
-    every_day.buy(price=btc_list[i], usd=1000)
+    every_day.buy(price=btc_list[i], usd=100)
 every_day.performance(imprint=True)
 
-print('\nEvery week:')
+print('\nBuy USD 700 every week:')
 every_week = Tester(btc_list)
 for i in range(len(btc_list)):
     if i % 7 == 0:
-        every_week.buy(price=btc_list[i], usd=1000)
+        every_week.buy(price=btc_list[i], usd=700)
 every_week.performance(imprint=True)
 
-print('\nEvery month:')
+print('\nBuy USD 3000 every month:')
 every_month = Tester(btc_list)
 for i in range(len(btc_list)):
     if i % 30 == 0:
-        every_month.buy(price=btc_list[i], usd=1000)
+        every_month.buy(price=btc_list[i], usd=3000)
 every_month.performance(imprint=True)
 
-print('\nEvery 6 months:')
+print('\nBuy USD 18300 every 6 months:')
 every_six_months = Tester(btc_list)
 for i in range(len(btc_list)):
     if i % 183 == 0:
-        every_six_months.buy(price=btc_list[i], usd=1000)
+        every_six_months.buy(price=btc_list[i], usd=18300)
 every_six_months.performance(imprint=True)
