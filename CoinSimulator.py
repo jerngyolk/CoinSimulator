@@ -75,9 +75,9 @@ class Tester():
         self.coins_owned = 0
         self.coins_value = 0
 
-    def buy(self, price, usd=0, amount=0, imprint=False):
+    def buy(self, price, usd=0, coins=0, imprint=False):
         """Buy coins, need prince and amount (usd or coin)."""
-        spent = usd + amount * price
+        spent = usd + coins * price
         self.money_spent += spent
         self.money_in += spent
         self.coins_owned += spent / price
@@ -88,9 +88,9 @@ class Tester():
             print(f'Coins owned: {self.coins_owned}')
             
 
-    def sell(self, price, usd=0, amount=0, imprint=False):
+    def sell(self, price, usd=0, coins=0, imprint=False):
         """Sell coins, need prince and amount (usd or coin)."""
-        received = usd + amount * price
+        received = usd + coins * price
         self.money_in -= received
         self.coins_owned -= received / price
         if imprint:
@@ -101,6 +101,7 @@ class Tester():
             
 
     def performance(self, imprint=False):
+        """Calculate investment return."""
         self.coins_value = round(self.coins_owned * self.price_list[-1], 2)
         solled = round(self.money_spent - self.money_in, 2)
         total_value = round(self.coins_value + solled, 2)
