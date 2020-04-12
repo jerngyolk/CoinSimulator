@@ -1,4 +1,4 @@
-# CoinChartSimulator
+# CoinSimulator
 
 The aim is to generate random cryptocurrency price data to do simulations to test investment strategies.
 This is based on the assumption that cryptocurrency price fluctuations are random.
