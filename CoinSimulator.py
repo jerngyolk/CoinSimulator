@@ -33,7 +33,7 @@ class CoinSimulator():
         return random.choice(self.changes)
 
     def generate_list(self, days=365):
-        """Generate a list of random price changes (a list of doubles)."""
+        """Generate a list of random price change (a list of doubles)."""
         return random.choices(self.changes, k=days)
     
     def simulate(self, start_price=0, days=365):
@@ -52,7 +52,7 @@ class CoinSimulator():
         return random.choice(self.changes_z)
 
     def generate_list_z(self, days=365):
-        """Generate a list of random (zero-sum) price changes."""
+        """Generate a list of random (zero-sum) price change."""
         return random.choices(self.changes_z, k=days)
 
     def simulate_z(self, start_price=0, days=365):
@@ -67,7 +67,7 @@ class CoinSimulator():
 
 
 class Tester():
-    """Take in a list of coin prices to test investment performance."""
+    """Take in a list of coin price to test investment performance."""
     def __init__(self, price_list):
         self.price_list = price_list
         self.money_spent = 0
