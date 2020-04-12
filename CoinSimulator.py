@@ -86,7 +86,6 @@ class Tester():
             print(f'Total spent: ${self.money_spent}')
             print(f'Money in: ${self.money_in}')
             print(f'Coins owned: {self.coins_owned}')
-            
 
     def sell(self, price, usd=0, coins=0, imprint=False):
         """Sell coins, need price and amount (usd or coin)."""
@@ -98,7 +97,6 @@ class Tester():
             print(f'Total spent: ${self.money_spent}')
             print(f'Money in: ${self.money_in}')
             print(f'Coins owned: {self.coins_owned}')
-            
 
     def performance(self, imprint=False):
         """Calculate investment return."""
