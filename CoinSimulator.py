@@ -65,91 +65,94 @@ class CoinSimulator():
             chart.append(chart[i] * (1 + changes[i]))
         return chart
 
-
-class CoinTester():
-    """Take in a list of coin price to test investment performance."""
+class InfiniteCash():
+    """Investment simulation with infinite cash."""
     def __init__(self, price_list):
         self.price_list = price_list
-        self.money_spent = 0
-        self.money_in = 0
+        self.cash_spent = 0
+        self.cash_in = 0
         self.coins_owned = 0
         self.coins_value = 0
 
     def buy(self, price, usd=0, coins=0, imprint=False):
         """Buy coins, need price and amount (usd or coin)."""
         spent = usd + coins * price
-        self.money_spent += spent
-        self.money_in += spent
+        self.cash_spent += spent
+        self.cash_in += spent
         self.coins_owned += spent / price
         if imprint:
             print(f'\nSpent ${spent} buying {spent / price} coins.')
-            print(f'Total spent: ${self.money_spent}')
-            print(f'Money in: ${self.money_in}')
+            print(f'Total spent: ${self.cash_spent}')
+            print(f'Money in: ${self.cash_in}')
             print(f'Coins owned: {self.coins_owned}')
 
     def sell(self, price, usd=0, coins=0, imprint=False):
         """Sell coins, need price and amount (usd or coin)."""
         received = usd + coins * price
-        self.money_in -= received
+        self.cash_in -= received
         self.coins_owned -= received / price
         if imprint:
             print(f'\nReceived ${received} selling {received / price} coins.')
-            print(f'Total spent: ${self.money_spent}')
-            print(f'Money in: ${self.money_in}')
+            print(f'Total spent: ${self.cash_spent}')
+            print(f'Money in: ${self.cash_in}')
             print(f'Coins owned: {self.coins_owned}')
 
     def performance(self, imprint=False):
         """Calculate investment return."""
         self.coins_value = round(self.coins_owned * self.price_list[-1], 2)
-        solled = round(self.money_spent - self.money_in, 2)
+        solled = round(self.cash_spent - self.cash_in, 2)
         total_value = round(self.coins_value + solled, 2)
         performance = round(
-            (total_value - self.money_spent) / self.money_spent, 2)
+            (total_value - self.cash_spent) / self.cash_spent, 2)
         if imprint:
             print('\nPerformance:')
             print(f'Coin value: ${self.coins_value}')
             print(f'Value of coins already sold: ${solled}')
             print(f'Total value: ${total_value}')
-            print(f'Total spent: ${round(self.money_spent, 2)}')
+            print(f'Total spent: ${round(self.cash_spent, 2)}')
             print(f'Return: {round(performance * 100, 2)}%')
         return performance
 
+class PortfolioTest():
+    """Investment simlulation with starting cash."""
+    def __init__(self, price_list, start_cash=100000):
+        self.price_list = price_list
+        self.start_cash = start_cash
+        self.cash = start_cash
+        self.coins_owned = 0
+        self.coins_value = 0
 
-#DEMO:
+    def buy(self, price, usd=0, coins=0, imprint=False):
+        """Buy coins, need price and amount (usd or coin)."""
+        spent = usd + coins * price
+        self.cash -= spent
+        self.coins_owned += spent / price
+        if imprint:
+            print(f'\nSpent ${spent} buying {spent / price} coins.')
+            print(f'Cash remain: {self.cash}')
+            print(f'Coins owned: {self.coins_owned}')
 
-btc = CoinSimulator('bitcoin')
-btc_list = btc.simulate(start_price=btc.prices[-1], days=1000)
-#btc_list = btc.prices
+    def sell(self, price, usd=0, coins=0, imprint=False):
+        """Sell coins, need price and amount (usd or coin)."""
+        received = usd + coins * price
+        self.cash += received
+        self.coins_owned -= received / price
+        if imprint:
+            print(f'\nReceived ${received} selling {received / price} coins.')
+            print(f'Cash remain: {self.cash}')
+            print(f'Coins owned: {self.coins_owned}')
 
-print('BTC periodic investment simulation:')
-print('Generated BTC price list (1000 days):')
-print(btc_list)
-
-print('Investment simulation:')
-
-print('\nBuy USD 100 every day:')
-every_day = CoinTester(btc_list)
-for i in range(len(btc_list)):
-    every_day.buy(price=btc_list[i], usd=100)
-every_day.performance(imprint=True)
-
-print('\nBuy USD 700 every week:')
-every_week = CoinTester(btc_list)
-for i in range(len(btc_list)):
-    if i % 7 == 0:
-        every_week.buy(price=btc_list[i], usd=700)
-every_week.performance(imprint=True)
-
-print('\nBuy USD 3000 every month:')
-every_month = CoinTester(btc_list)
-for i in range(len(btc_list)):
-    if i % 30 == 0:
-        every_month.buy(price=btc_list[i], usd=3000)
-every_month.performance(imprint=True)
-
-print('\nBuy USD 18300 every 6 months:')
-every_six_months = CoinTester(btc_list)
-for i in range(len(btc_list)):
-    if i % 183 == 0:
-        every_six_months.buy(price=btc_list[i], usd=18300)
-every_six_months.performance(imprint=True)
+    def performance(self, imprint=False):
+        """Calculate investment return."""
+        self.coins_value = round(self.coins_owned * self.price_list[-1], 2)
+        total_value = round(self.coins_value + self.cash, 2)
+        performance = round(
+            (total_value - self.start_cash) / self.start_cash, 2)
+        if imprint:
+            print('\nPerformance:')
+            print(f'Start money: ${self.start_cash}')
+            print(f'Coin value: ${self.coins_value}')
+            print(f'Cash remain: ${round(self.cash, 2)}')
+            print(f'Total value: ${total_value}')
+            print(f'Return: {round(performance * 100, 2)}%')
+        return performance
